@@ -22,8 +22,26 @@ module.exports = {
             "css-loader",
             "sass-loader"
         ]
+      },
+      {
+        test: /\.(jpg|png|gif|svg)$/,
+        use: [
+        {
+            loader: 'file-loader',
+            options: {
+                name: '[name].[ext]',
+                outputPath: './assets/',
+            }
+        }]
       }
       ]
+    },
+    devServer: {
+      port:3000,
+      open:true,
+      proxy: {
+        '/api': 'http://localhost:8080/'
+      }
     },
     plugins: [htmlPlugin]
   };
